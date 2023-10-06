@@ -7,6 +7,8 @@ const middleware = require('./middleware');
 const path = require('path');
 const app = express();
 const {Server} = require('socket.io');
+const router = require('./routes/route');
+
 
 const server = app.listen(3001, ()=>{
     console.log('server is running on port 3001');
