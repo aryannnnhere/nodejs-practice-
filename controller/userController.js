@@ -44,6 +44,7 @@ var addUser = async (req,res)=>{
         res.status(200).json({ data : data});
     }
     catch(err){
+        console.log(err);
         res.status(400).json({err});
     }
 }

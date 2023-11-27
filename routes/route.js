@@ -1,7 +1,8 @@
-const {Router} = require('express');
-const router = Router();
+const express = require('express');
+const router = express.Router();
 const userController = require('../controller/userController');
 const middleware = require('../middleware');
+const path = require('path');
 
 router.get('/' , function(req,res){
     res.send('hello guysss');
@@ -11,7 +12,10 @@ router.get('/add' , userController.addUser);
 router.get('/users' , userController.getUsers);
 router.get('/user/:id' , userController.getUser);
 router.post('/user',  userController.postUser);
-router.delete('/user/:id' , userController.deleteUser);
+router.delete('/user/:id' ,(req,res,next)=>{
+    console.log("i am here");
+    next();
+} ,userController.deleteUser);
 router.patch('/user/:id' , userController.patchUser);
 router.post('/signin' , userController.signin);
 
@@ -28,5 +32,4 @@ router.get('/cookie' , async(req, res)=>{
  console.log(req.cookies);
  res.send('check cookie');
 });
-
-export default router;
+module.exports = router;
